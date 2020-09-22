@@ -1,0 +1,58 @@
+### Uses locally built images for each service
+
+version: "3"
+services:
+  api:
+    build: ./api
+    restart: always
+    ports:
+      - 8080:8080
+    # Need to wait for postgres to start
+    command: ["./wait-for-it.sh", "db:5432", "--", "./api"]
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - PG_HOST=db
+
+  honeyclient:
+    build: ./honeyclient
+    restart: always
+    # Need to wait for postgres to start
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - PG_HOST=db
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - 3000:80
+
+  db:
+    image: postgres
+    restart: always
+    # Set volume so database not lost after shutting down container
+    # volumes:
+    #   - ./postgres-data:/var/lib/postgresql/data
+    # Setup username, password, and database name
+    environment:
+      - POSTGRES_USER=gorm
+      - POSTGRES_PASSWORD=gorm
+      - POSTGRES_DB=gorm
+    ports:
+      # Map to localhost:5555 so no conflicts with local instance of postgres
+      - 5555:5432
+
+  # Container to interact with db
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 5000:8080

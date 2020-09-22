@@ -1,0 +1,46 @@
+{
+  "name": "honeyclient",
+  "version": "1.0.0",
+  "description": "Interacts with a malicious website to grab screenshots and other information.",
+  "main": "src/index.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-modules src/index.mjs",
+    "dev": "nodemon --exec node --experimental-modules src/index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csci4950tgt/honeyclient.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csci4950tgt/honeyclient/issues"
+  },
+  "homepage": "https://github.com/csci4950tgt/honeyclient#readme",
+  "engines": {
+    "node": ">12.0.0"
+  },
+  "dependencies": {
+    "@limedocs/express-middleware-memfs": "^1.0.0-beta.18",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "memfs": "^3.0.4",
+    "node-fetch": "^2.6.0",
+    "puppeteer": "^1.20.0",
+    "tesseractocr": "^1.2.1",
+    "yara": "^2.2.0"
+  },
+  "devDependencies": {
+    "husky": "^3.0.9",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^2.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
