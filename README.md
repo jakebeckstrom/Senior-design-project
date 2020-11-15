@@ -18,7 +18,7 @@ The API is responsible for handling requests from the Frontend and HoneyClient a
 | ----------- | ----------- |
 | Frontend | React, Semantic-UI-React,  |
 | API | Golang, Postgres, Docker |
-| HoneyClient | Node.js, Express, Puppeteer, Yara, Tesseract OCR, google Safe Browsing |
+| HoneyClient | Node.js, Express, Puppeteer, Yara, Tesseract OCR, Google Safe Browsing |
 
 
 Please refer to the README files in each folder for instructions regarding the development environment for each component.
